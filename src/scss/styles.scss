@@ -1,0 +1,19 @@
+@use "~bootstrap/scss/bootstrap" as *;
+@use "./loader.scss" as *;
+
+
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  color: #333;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}

@@ -1,7 +1,7 @@
 import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import './scss/styles.scss';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+// import './scss/styles.scss';
 
 axios.get('https://jsonplaceholder.typicode.com/posts')
   .then(response => {
