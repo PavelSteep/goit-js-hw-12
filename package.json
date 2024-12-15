@@ -8,7 +8,8 @@
     "build": "rimraf dist && vite build --base=/goit-js-hw-12/",
     "preview": "vite preview",
     "sass": "sass src/scss:css",
-    "prod": "vite --mode production"
+    "prod": "vite build --mode production",
+    "clear": "rimraf dist"
   },
   "devDependencies": {
     "glob": "^11.0.0",
@@ -25,6 +26,7 @@
     "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "simplelightbox": "^2.14.3",
     "vite-plugin-full-reload": "^1.2.0",
     "vite-plugin-html-inject": "^1.1.2"
   },

@@ -1,21 +1,25 @@
 import { defineConfig } from 'vite';
+import path from 'path';
 import { resolve } from 'path';
 import injectHTML from 'vite-plugin-html-inject';
 import FullReload from 'vite-plugin-full-reload';
 
-export default defineConfig(({ command }) => ({
-  define: {
-    [command === 'serve' ? 'global' : '_global']: {},
-  },
+export default defineConfig({
+  base: './',  // укажите базовый путь, если ваш проект будет размещен в подкаталоге
   root: 'src',
   build: {
     outDir: '../dist',
     emptyOutDir: true,
-    sourcemap: command === 'serve',
+    sourcemap: true, // Включаем sourcemaps для отладки
     rollupOptions: {
       input: resolve(__dirname, 'src/index.html'),
       output: {
-        assetFileNames: 'assets/[name]-[hash][extname]',
+        assetFileNames: (assetInfo) => {
+          if (/\.(jpg|jpeg|png|gif|webp|svg)$/i.test(assetInfo.name)) {
+            return 'assets/[name]-[hash][extname]'; // Здесь задаем путь для картинок
+          }
+          return 'assets/[name][extname]'; // Для других файлов
+        },
         manualChunks(id) {
           if (id.includes('node_modules')) {
             return 'vendor';
@@ -24,8 +28,14 @@ export default defineConfig(({ command }) => ({
       },
     },
   },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'), // Упрощает импорты
+      '@api': resolve(__dirname, 'src/js'),
+    },
+  },
   server: {
-    port: 4500,
+    port: 4173,
     open: true,
     hmr: true,
   },
@@ -40,7 +50,11 @@ export default defineConfig(({ command }) => ({
       },
     },
   },
-}));
+  // Обработка статических файлов, как изображения, шрифты и прочее
+  assetsInclude: ['**/*.jpg', '**/*.jpeg', '**/*.png', '**/*.gif', '**/*.webp', '**/*.svg'],
+});
+
+
 
 
 
