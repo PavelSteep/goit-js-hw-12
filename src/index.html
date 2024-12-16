@@ -15,19 +15,20 @@
     >
     <link rel="stylesheet" href="./css/styles.css" />
     <link rel="stylesheet" href="./dist/styles.css" />
+    <link rel="stylesheet" href="node_modules/simplelightbox/dist/simple-lightbox.min.css" />
   </head>
   <body class="p-3 m-0 border-0">
 
     <nav class="navbar bg-body-light mb-3">
       <div class="d-flex justify-content-center container-fluid">
-        <form class="d-flex" role="search">
+        <form class="d-flex" id="search-form" role="search">
           <input class="form-control me-2" type="search" placeholder="Search images..." aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <button class="btn btn-outline-success load-more" type="submit">Search</button>
         </form>
       </div>
     </nav>
     
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5 g-4">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5 g-4 gallery">
       <div class="col">
         <div class="card h-100">
           <img src="./img/hero.jpg" class="card-img-top" alt="...">
@@ -159,82 +160,7 @@
       </button>
     </div>
 
-    <button class="load-more" style="display:none;">Load more</button>
-
-
-
-    <!-- <div class="grid js-cards-container">
-      <article class="card g-col-4">
-        <img 
-        class="card-img-top"
-        src="https://ichef.bbc1.co.uk/news/1024/branded_news/4303/production/_133155171_gettyimages-1231348679.jpg" 
-        alt="..."
-        />
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the bulk of the card's content.
-          </p>
-          <p class="card-text">
-            <small class="text-body-secondary">Last updated 3 mins ago</small>
-          </p>
-          <a href="#" class="btn btn-primary">
-            <span class="text-white">Read more</span>
-          </a>
-        </div>
-      </article>
-      <article class="card g-col-4">
-        <img 
-        class="card-img-top"
-        src="https://ichef.bbc1.co.uk/news/1024/branded_news/4303/production/_133155171_gettyimages-1231348679.jpg" 
-        alt="..."
-        />
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the bulk of the card's content.
-          </p>
-          <p class="card-text">
-            <small class="text-body-secondary">Last updated 3 mins ago</small>
-          </p>
-          <a href="#" class="btn btn-primary">
-            <span class="text-white">Read more</span>
-          </a>
-        </div>
-      </article>
-      <article class="card g-col-4">
-        <img 
-        class="card-img-top"
-        src="https://ichef.bbc1.co.uk/news/1024/branded_news/4303/production/_133155171_gettyimages-1231348679.jpg" 
-        alt="..."
-        />
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the bulk of the card's content.
-          </p>
-          <p class="card-text">
-            <small class="text-body-secondary">Last updated 3 mins ago</small>
-          </p>
-          <a href="#" class="btn btn-primary">
-            <span class="text-white">Read more</span>
-          </a>
-        </div>
-      </article>
-    </div> -->
-    <!-- #endregion -->
-
-    <!-- #region Load more button -->
-    <!-- <div class="d-flex justify-content-center p-3">
-      <button class="btn btn-primary text-light d-flex align-items-center js-load-more">
-        <span class="spinner-border spinner-border-sm js-loader d-none"
-        aria-hidden="true">
-        </span>
-        <span class="ms-1">Load more</span>
-      </button>
-    </div> -->
-    <!-- #endregion -->
-
+    <!-- <button class="load-more" style="display:none;">Load more</button> -->
 
     <!-- <load src="./partials/header.html" icon-path="img/sprite.svg#logo" /> -->
     <main>
@@ -246,23 +172,12 @@
                 <use href="./img/sprite.svg#logo"></use>
               </svg>
             </a>
-            <!-- <ul class="nav-list">
-              <li class="nav-item">
-                <a class="nav-link {=$highlight-act}" href="./page-2.html">Page 2</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link {=$highlight-curr}" href="./page-3.html">Page 3</a>
-              </li>
-            </ul> -->
           </nav>
         </div>
       </header>
-      <!-- Loads the specified .html file -->
+      
       <load src="./partials/vite-promo.html" />
-      <!-- <load src="./partials/badges.html" /> -->
     </main>
-
-    <!-- <load src="./partials/footer.html" /> -->
 
     <!-- Подключение Axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
