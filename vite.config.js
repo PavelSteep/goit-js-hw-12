@@ -1,8 +1,9 @@
 import { defineConfig } from 'vite';
 import path from 'path';
-import injectHTML from 'vite-plugin-html-inject';
-import FullReload from 'vite-plugin-full-reload';
-import SortCss from 'postcss-sort-media-queries';
+import sass from 'sass';
+import htmlInject from 'vite-plugin-html-inject';
+import fullReload from 'vite-plugin-full-reload';
+import sortCss from 'postcss-sort-media-queries';
 
 const mode = process.env.NODE_ENV || 'development';
 const devMode = mode === 'development';
@@ -36,76 +37,27 @@ export default defineConfig({
     port: 4173,
     open: true,
   },
+  css: {
+    postcss: {
+      plugins:[
+        sortCss({sort:'mobile-first'})
+      ]
+    },
+    preprocessorOptions: {
+      scss: {
+        implementation: sass,
+        additionalData: `@use "bootstrap/scss/bootstrap" as *;`,
+        includePaths: ['./src/scss/styles'],
+            },
+    },
+  },
   plugins: [
-    injectHTML(),
-    FullReload(['./src/**/*.html']),
-    SortCss({ sort: 'mobile-first' }),
+    htmlInject(),
+    fullReload(['./src/**/*.html']),
+    sortCss({ sort: 'mobile-first' }),
   ],
 });
 
 
-
-
-
-
-// import { defineConfig } from 'vite';
-// import { resolve } from 'path';
-// import { glob } from 'glob';
-// import injectHTML from 'vite-plugin-html-inject';
-// import FullReload from 'vite-plugin-full-reload';
-// import SortCss from 'postcss-sort-media-queries';
-
-// export default defineConfig(({ command }) => {
-//   return {
-//     define: {
-//       [command === 'serve' ? 'global' : '_global']: {},
-//     },
-//     root: resolve(__dirname, 'src'),
-//     build: {
-//       sourcemap: true,
-//       outDir: '../dist',
-//       rollupOptions: {
-//         input: glob.sync('./src/*.html'),
-//         output: {
-//           manualChunks(id) {
-//             if (id.includes('node_modules')) {
-//               return 'vendor';
-//             }
-//           },
-//           entryFileNames: chunkInfo => {
-//             if (chunkInfo.name === 'commonHelpers') {
-//               return 'commonHelpers.js';
-//             }
-//             return '[name].js';
-//           },
-//           assetFileNames: assetInfo => {
-//             if (assetInfo.name && assetInfo.name.endsWith('.html')) {
-//               return '[name].[ext]';
-//             }
-//             return 'assets/[name]-[hash][extname]';
-//           },
-//         },
-//       },
-//       outDir: '../dist',
-//       emptyOutDir: true,
-//     },
-//     plugins: [
-//       injectHTML(),
-//       FullReload(['./src/**/**.html']),
-//       SortCss({
-//         sort: 'mobile-first',
-//       }),
-//     ],
-//     server: {
-//       port: 5173,
-//     },
-//     css: {
-//       preprocessorOptions: {
-//         scss: {
-//           additionalData: `@import "./src/scss/loader.scss";`,
-//           includePaths: ['./src/scss/styles'],
-//         },
-//       },
-//     },
-//   };
-// });
+        // additionalData: `@import "@/scss/loader.scss";`,
+        // includePaths: [path.resolve(__dirname, './src/scss/styles')],

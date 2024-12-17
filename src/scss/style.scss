@@ -1,22 +1,21 @@
-@use "@/../node_modules/bootstrap/scss/bootstrap" as *;
-@use "~bootstrap/scss/bootstrap" as *;
 @use "bootstrap/scss/bootstrap" as *;
 @import "@/scss/loader.scss";
+
 
 // @import 'loader';
 // @import "~bootstrap/scss/bootstrap";
 
-body {
-  font-family: Arial, sans-serif;
-}
+// body {
+//   font-family: Arial, sans-serif;
+// }
 
-h1 {
-  color: #333;
-}
+// h1 {
+//   color: #333;
+// }
 
-.loader-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
+// .loader-container {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   height: 100vh;
+// }
