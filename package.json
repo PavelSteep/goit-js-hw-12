@@ -5,13 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "rimraf dist && vite build --base=/goit-js-hw-12/",
+    "build": "cross-env NODE_ENV=production vite build --base=/goit-js-hw-12/",
     "preview": "vite preview",
     "sass": "sass src/scss:css",
     "prod": "vite build --mode production",
     "clear": "rimraf dist"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "glob": "^11.0.0",
     "postcss": "^8.4.49",
     "postcss-sort-media-queries": "^5.2.0",

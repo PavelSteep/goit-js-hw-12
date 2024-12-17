@@ -2,6 +2,8 @@ import { fetchImages } from './js/pixabay-api';
 import { renderGallery, clearGallery } from './js/render-functions';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
+import './index.html';
+import './css/styles.css';
 import './scss/style.scss';
 
 const searchForm = document.querySelector('#search-form');
