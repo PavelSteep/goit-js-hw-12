@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import handlebars from 'vite-plugin-handlebars';
 import { glob } from 'glob';
 import injectHTML from 'vite-plugin-html-inject';
 import FullReload from 'vite-plugin-full-reload';
@@ -43,6 +44,21 @@ export default defineConfig(({ command }) => {
       SortCss({
         sort: 'mobile-first',
       }),
+      handlebars({
+        partialDirectory: './src/templates',
+      }),
     ],
+    server: {
+      port: 5173,
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@import "./src/scss/loader.scss";`,
+          includePaths: ['./src/scss/style.scss'],
+        },
+      },
+    },
+    assetsInclude: ['**/*.hbs'],
   };
 });
