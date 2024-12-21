@@ -7,12 +7,10 @@
     "dev": "vite",
     "build": "vite build --base=/goit-js-hw-12/",
     "preview": "vite preview",
-    "prod": "vite build --mode production",
     "clear": "rimraf dist"
   },
   "devDependencies": {
     "glob": "^11.0.0",
-    "handlebars": "^4.7.8",
     "postcss": "^8.4.41",
     "postcss-sort-media-queries": "^5.2.0",
     "rimraf": "^6.0.1",

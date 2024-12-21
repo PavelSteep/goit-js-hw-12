@@ -8,6 +8,9 @@ import sass from 'sass';
 
 export default defineConfig(({ command }) => {
   return {
+
+    base: '/dist/',
+    
     define: {
       [command === 'serve' ? 'global' : '_global']: {},
     },
@@ -60,6 +63,5 @@ export default defineConfig(({ command }) => {
         },
       },
     },
-    assetsInclude: ['**/*.hbs'],
   };
 });

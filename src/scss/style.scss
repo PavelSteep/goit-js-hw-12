@@ -2,6 +2,7 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 @import 'loader';
 
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -21,78 +22,16 @@ header {
   height: 100vh;
 }
 
-
-
-
-
-
 .container {
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.gallery-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 15px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.gallery-item {
-  overflow: hidden;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.gallery-item img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 0.3s ease;
-}
-
-.gallery-item:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.gallery-item img:hover {
-  transform: scale(1.1);
-}
-
-.loader {
-  display: block;
-  margin: 20px auto;
-  text-align: center;
-}
-
-
-
-
-
-
-
-
-
-
-// styles.scss
-
-/* Общие стили для секции галереи */
 .gallery {
   padding: 20px;
   background-color: #f8f8f8;
 }
 
-/* Контейнер для галереи */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Список изображений */
 .gallery-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -102,28 +41,25 @@ header {
   margin: 0;
 }
 
-/* Элемент галереи */
 .gallery-item {
   overflow: hidden;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
 }
 
-.gallery-item:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
-}
-
-/* Изображения внутри элементов */
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-/* Кнопка загрузки */
 .load-more {
   display: inline-block;
   padding: 10px 20px;
@@ -135,15 +71,10 @@ header {
   text-align: center;
   margin-top: 20px;
   transition: background-color 0.3s ease;
-}
 
-.load-more:hover {
-  background-color: #0056b3;
-}
-
-/* Стили для загрузчика */
-.loader.is-hidden {
-  display: none;
+  &:hover {
+    background-color: #0056b3;
+  }
 }
 
 .loader {
@@ -154,10 +85,21 @@ header {
   width: 24px;
   height: 24px;
   animation: spin 1s linear infinite;
+
+  &.is-hidden {
+    display: none;
+  }
 }
 
-/* Анимация вращения для загрузчика */
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.hero {
+  background-image: url("/assets/hero.jpg");
+}
+
+.hero {
+  background-image: url("/assets/hero@2x.jpg");
 }
