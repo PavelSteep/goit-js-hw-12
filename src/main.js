@@ -17,14 +17,14 @@ const loadMoreButton = document.getElementById('loadMoreButton');
 const imageContainer = document.getElementById('imageContainer');
 
 let currentPage = 1; // Номер текущей страницы
-const query = 'nature'; // Запрос по умолчанию, например, 'nature'
+let query = 'nature'; // Запрос по умолчанию, например, 'nature'
 
 
 if (searchForm) {
   searchForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const query = searchInput.value.trim();
+    query = searchInput.value.trim();
 
     if (!query) {
       iziToast.error({ message: 'Please enter a search term' });
