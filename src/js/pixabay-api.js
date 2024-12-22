@@ -1,10 +1,10 @@
 // Функция для получения изображений из API с пагинацией
-export const fetchImages = async (query, page = 1, perPage = 1) => {
+export const fetchImages = async (query, page = 1, perPage = 20) => {  // Параметр perPage установлен на 20
   const API_KEY = '47502659-8e710eb0ff3e952458316b5b2';
   const BASE_URL = 'https://pixabay.com/api/';
 
   try {
-    const url = `${BASE_URL}?key=${API_KEY}&q=${query}&image_type=photo&orientation=horizontal&safesearch=true`;
+    const url = `${BASE_URL}?key=${API_KEY}&q=${query}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=${perPage}`;
     console.log('Запрос к API:', url); // Логируем URL запроса
 
     const response = await fetch(url);

@@ -7,35 +7,34 @@ import 'izitoast/dist/css/iziToast.min.css';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 const searchForm = document.querySelector('#search-form');
 const searchInput = document.querySelector('#search-input');
 const gallery = document.querySelector('.gallery');
 const loadMoreBtn = document.querySelector('.load-more');
-// Ссылка на кнопку и контейнер для картинок
 const loadMoreButton = document.getElementById('loadMoreButton');
 const imageContainer = document.getElementById('imageContainer');
 
 let currentPage = 1; // Номер текущей страницы
-const query = 'nature'; // Запрос по умолчанию, например, 'nature'
+let query = 'nature'; // Запрос по умолчанию
 
-
+// Обработчик отправки формы для поиска
 if (searchForm) {
   searchForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    query = searchInput.value.trim();
+    query = searchInput.value.trim(); // Обновляем запрос
 
     if (!query) {
       iziToast.error({ message: 'Please enter a search term' });
       return;
     }
 
+    currentPage = 1; // Сброс страницы на первую
     showLoader();
     clearGallery();
 
     try {
-      const images = await fetchImages(query);
+      const images = await fetchImages(query, currentPage);
 
       if (images.length === 0) {
         iziToast.info({ message: 'Sorry, there are no images matching your search query. Please try again!' });
@@ -53,10 +52,9 @@ if (searchForm) {
   console.error('Search form element not found');
 }
 
-if (loadMoreBtn) {
-  loadMoreBtn.addEventListener('click', async () => {
-    const query = searchInput.value.trim();
-
+// Обработчик нажатия на кнопку "Загрузить больше"
+if (loadMoreButton) {
+  loadMoreButton.addEventListener('click', async () => {
     if (!query) {
       iziToast.error({ message: 'Please enter a search term' });
       return;
@@ -65,13 +63,14 @@ if (loadMoreBtn) {
     showLoader();
 
     try {
-      const images = await fetchImages(query);
+      let images = await fetchImages(query, currentPage);  // Используем currentPage
 
       if (images.length === 0) {
         iziToast.info({ message: 'Sorry, there are no more images to load.' });
       } else {
-        renderImages(images);
+        renderImages(images);  // Рендерим новые изображения
         initializeLightbox();
+        currentPage++; // Увеличиваем номер страницы
       }
     } catch (error) {
       iziToast.error({ message: 'Something went wrong, please try again!' });
@@ -83,6 +82,7 @@ if (loadMoreBtn) {
   console.error('Load more button element not found');
 }
 
+// Функция для отображения индикатора загрузки
 function showLoader() {
   const loader = document.createElement('div');
   loader.classList.add('loader');
@@ -90,68 +90,18 @@ function showLoader() {
   gallery.appendChild(loader);
 }
 
+// Функция для скрытия индикатора загрузки
 function hideLoader() {
   const loader = document.querySelector('.loader');
   if (loader) loader.remove();
 }
 
+// Функция для очистки галереи
 function clearGallery() {
   gallery.innerHTML = '';
 }
 
+// Функция для инициализации lightbox
 function initializeLightbox() {
   new SimpleLightbox('.gallery a');
 }
-
-
-// Массив с путями к дополнительным изображениям
-const additionalImages = [
-  'image3.jpg',
-  'image4.jpg',
-  'image5.jpg',
-  'image6.jpg'
-];
-
-// Функция для загрузки изображений при нажатии на кнопку
-async function loadMoreImages() {
-  try {
-    const images = await fetchImages(query, currentPage);
-
-    if (images.length > 0) {
-      renderImages(images, imageContainer); // Отображаем изображения
-      currentPage++; // Увеличиваем номер страницы для следующей загрузки
-    } else {
-      loadMoreButton.disabled = true; // Отключаем кнопку, если изображений больше нет
-      alert('Изображения не найдены');
-    }
-  } catch (error) {
-    alert('Произошла ошибка при загрузке изображений');
-    console.error(error);
-  }
-}
-
-// Обработчик события для кнопки "Load more"
-loadMoreButton.addEventListener('click', loadMoreImages);
-
-// Обработчик формы поиска
-if (searchForm) {
-  searchForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    query = searchInput.value.trim();
-
-    if (!query) {
-      alert('Пожалуйста, введите запрос');
-      return;
-    }
-
-    currentPage = 1; // Сбросить номер страницы
-    loadMoreButton.disabled = true; // Включить кнопку, если был новый запрос
-
-    // Очистить контейнер и загрузить изображения для нового запроса
-    imageContainer.innerHTML = '';
-    loadMoreImages();
-  });
-}
-
-// Загружаем изображения при первой загрузке страницы
-loadMoreImages();

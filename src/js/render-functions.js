@@ -1,8 +1,5 @@
-// import Handlebars from 'handlebars';
-// import imageCardTemplate from './templates/image-card.hbs';
 export const renderImages = (images) => {
   const gallery = document.querySelector('.gallery');
-  gallery.innerHTML = '';
 
   console.log('Изображения для отображения:', images);
 
