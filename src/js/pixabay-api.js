@@ -1,32 +1,5 @@
-export const renderImages = (images) => {
-  const gallery = document.querySelector('.gallery');
-  gallery.innerHTML = ''; // Очистить старые изображения перед новым запросом
-
-  console.log('Изображения для отображения:', images); // Логируем изображения
-
-  if (images.length === 0) {
-    gallery.innerHTML = '<p>No images found</p>';
-    return;
-  }
-
-  // Строим строки HTML для всех изображений
-  const cards = images.map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => {
-    return `
-      <div class="card">
-        <a href="${largeImageURL}">
-          <img src="${webformatURL}" alt="${tags || 'Image'}" />
-        </a>
-        <p>Likes: ${likes} | Views: ${views} | Comments: ${comments} | Downloads: ${downloads}</p>
-      </div>
-    `;
-  }).join(''); // Преобразуем массив строк в одну строку
-
-  // Вставляем все карточки в галерею
-  gallery.insertAdjacentHTML('beforeend', cards);
-};
-
-// Функция для получения изображений из API
-export const fetchImages = async (query) => {
+// Функция для получения изображений из API с пагинацией
+export const fetchImages = async (query, page = 1, perPage = 1) => {
   const API_KEY = '47502659-8e710eb0ff3e952458316b5b2';
   const BASE_URL = 'https://pixabay.com/api/';
 

@@ -2,9 +2,9 @@
 // import imageCardTemplate from './templates/image-card.hbs';
 export const renderImages = (images) => {
   const gallery = document.querySelector('.gallery');
-  gallery.innerHTML = ''; // Очистить старые изображения перед новым запросом
+  gallery.innerHTML = '';
 
-  console.log('Изображения для отображения:', images); // Логируем изображения
+  console.log('Изображения для отображения:', images);
 
   if (images.length === 0) {
     gallery.innerHTML = '<p>No images found</p>';

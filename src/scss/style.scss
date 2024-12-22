@@ -1,6 +1,9 @@
-@use "bootstrap/scss/bootstrap" as *;
-@import 'bootstrap/dist/css/bootstrap.min.css';
+$font-family-base: Arial, sans-serif;
+@use "bootstrap" as *;
 @import 'loader';
+// @use "bootstrap/scss/bootstrap" as *;
+// @import 'bootstrap/dist/css/bootstrap.min.css';
+// @import 'loader';
 
 
 body {
@@ -16,10 +19,7 @@ header {
 }
 
 .main-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  @extend .d-flex, .justify-content-center, .align-items-center, .h-100;
 }
 
 .container {
@@ -87,6 +87,7 @@ header {
   animation: spin 1s linear infinite;
 
   &.is-hidden {
+    visibility: hidden;
     display: none;
   }
 }
@@ -98,8 +99,17 @@ header {
 
 .hero {
   background-image: url("/assets/hero.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+
+  @media (min-resolution: 2dppx) {
+    background-image: url("/assets/hero@2x.jpg");
+  }
 }
 
-.hero {
-  background-image: url("/assets/hero@2x.jpg");
+@media (max-width: 600px) {
+  .gallery-list {
+    grid-template-columns: 1fr;
+  }
 }
