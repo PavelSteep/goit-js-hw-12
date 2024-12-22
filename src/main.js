@@ -17,7 +17,7 @@ const loadMoreButton = document.getElementById('loadMoreButton');
 const imageContainer = document.getElementById('imageContainer');
 
 let currentPage = 1; // Номер текущей страницы
-let query = 'nature'; // Запрос по умолчанию, например, 'nature'
+const query = 'nature'; // Запрос по умолчанию, например, 'nature'
 
 
 if (searchForm) {
