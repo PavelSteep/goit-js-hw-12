@@ -114,4 +114,14 @@ header {
   .gallery-list {
     grid-template-columns: 1fr;
   }
+
+  .search-input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .load-more {
+    width: 100%;
+    margin-top: 10px;
+  }
 }
