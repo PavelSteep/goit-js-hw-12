@@ -12,7 +12,7 @@ const searchInput = document.querySelector('#search-input');
 const gallery = document.querySelector('.gallery');
 const loadMoreBtn = document.querySelector('.load-more');
 const loadMoreButton = document.getElementById('loadMoreButton');
-const imageContainer = document.getElementById('imageContainer');
+// const imageContainer = document.getElementById('imageContainer');
 
 let currentPage = 1; // Номер текущей страницы
 let query = 'nature'; // Запрос по умолчанию
