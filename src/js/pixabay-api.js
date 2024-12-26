@@ -62,24 +62,26 @@ const hideLoadMoreButton = () => {
 };
 
 // Пример обработки события нажатия на кнопку "Load more"
-document.getElementById('loadMoreButton')?.addEventListener('click', async () => {
-  const loadMoreButton = document.getElementById('loadMoreButton');
-  if (!loadMoreButton) return;
+const loadMoreButton = document.getElementById('loadMoreButton');
+if (loadMoreButton) {
+  loadMoreButton.addEventListener('click', async () => {
+    loadMoreButton.classList.add('is-hidden');
+    showLoader(true);
 
-  loadMoreButton.classList.add('is-hidden');
-  showLoader(true);
+    const query = 'nature'; // Ваш запрос для поиска
+    currentPage++; // Увеличиваем страницу после каждого клика
 
-  const query = 'nature'; // Ваш запрос для поиска
-  currentPage++; // Увеличиваем страницу после каждого клика
+    const images = await fetchImages(query, currentPage, 15);
+    if (images.length > 0) {
+      // Добавляем новые изображения на страницу
+      displayImages(images);
+    }
 
-  const images = await fetchImages(query, currentPage, 15);
-  if (images.length > 0) {
-    // Добавляем новые изображения на страницу
-    displayImages(images);
-  }
-
-  showLoader(false);
-});
+    showLoader(false);
+  });
+} else {
+  console.error('Кнопка "Load More" не найдена');
+}
 
 // Функция для отображения изображений
 const displayImages = (images) => {
