@@ -3,11 +3,10 @@ export const renderImages = (images) => {
 
   console.log('Изображения для отображения:', images);
 
-   // Очищаем галерею перед вставкой новых изображений
-  gallery.innerHTML = '';
-
   if (images.length === 0) {
-    gallery.innerHTML = '<p>No images found</p>';
+    if (gallery.children.length === 0) { // Если галерея ещё пустая
+      gallery.innerHTML = '<p>No images found</p>';
+    }
     return;
   }
 

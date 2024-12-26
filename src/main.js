@@ -60,22 +60,27 @@ if (loadMoreButton) {
       return;
     }
 
+    loadMoreButton.style.display = 'none'; // Скрываем кнопку перед загрузкой
+
     showLoader();
 
     try {
-      let images = await fetchImages(query, currentPage);  // Используем currentPage
+      currentPage++; // Увеличиваем номер страницы
+      const images = await fetchImages(query, currentPage); // Загружаем изображения с новой страницы
 
+      // Если загружаемые изображения не нашлись, скрываем кнопку "Загрузить больше"
       if (images.length === 0) {
         iziToast.info({ message: 'Sorry, there are no more images to load.' });
+        hideLoadMoreButton(); // Скрываем кнопку, если больше нечего загружать
       } else {
         renderImages(images);  // Рендерим новые изображения
         initializeLightbox();
-        currentPage++; // Увеличиваем номер страницы
       }
     } catch (error) {
       iziToast.error({ message: 'Something went wrong, please try again!' });
     } finally {
       hideLoader();
+      loadMoreButton.style.display = 'block'; // Показываем кнопку после загрузки
     }
   });
 } else {
