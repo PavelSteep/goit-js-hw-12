@@ -43,32 +43,31 @@ export const fetchImages = async (query, page = 1, perPage = 20) => {
 // Функция для показа/скрытия лоадера
 const showLoader = (isLoading) => {
   const loader = document.getElementById('loader');
-  if (loader) { // Проверяем, существует ли элемент с id 'loader'
-    if (isLoading) {
-      loader.style.display = 'block';
-    } else {
-      loader.style.display = 'none';
-    }
+  if (loader) {
+    loader.style.display = isLoading ? 'block' : 'none';
+  } else {
+    console.error('Элемент с id "loader" не найден');
   }
 };
-
 
 // Функция для скрытия кнопки "Load more"
 const hideLoadMoreButton = () => {
   const loadMoreButton = document.getElementById('loadMoreButton');
-  loadMoreButton.classList.add('is-hidden'); // Используем класс для скрытия
-  console.log("Кнопка скрыта:", loadMoreButton);
-  // loadMoreButton.style.display = 'none';
+  if (loadMoreButton) {
+    loadMoreButton.classList.add('is-hidden');
+    console.log('Кнопка скрыта:', loadMoreButton);
+  } else {
+    console.error('Элемент с id "loadMoreButton" не найден');
+  }
 };
 
 // Пример обработки события нажатия на кнопку "Load more"
-document.getElementById('loadMoreButton').addEventListener('click', async () => {
-
+document.getElementById('loadMoreButton')?.addEventListener('click', async () => {
   const loadMoreButton = document.getElementById('loadMoreButton');
-  loadMoreButton.classList.add('is-hidden'); // Скрываем кнопку
+  if (!loadMoreButton) return;
 
-  const loader = document.querySelector('.loader');
-  loader.classList.remove('is-hidden'); // Показываем загрузчик
+  loadMoreButton.classList.add('is-hidden');
+  showLoader(true);
 
   const query = 'nature'; // Ваш запрос для поиска
   currentPage++; // Увеличиваем страницу после каждого клика
@@ -79,8 +78,7 @@ document.getElementById('loadMoreButton').addEventListener('click', async () => 
     displayImages(images);
   }
 
-    loader.classList.add('is-hidden'); // Прячем загрузчик после загрузки
-
+  showLoader(false);
 });
 
 // Функция для отображения изображений
@@ -90,10 +88,10 @@ const displayImages = (images) => {
     images.forEach((image) => {
       const imgElement = document.createElement('img');
       imgElement.src = image.webformatURL;
+      imgElement.alt = image.tags || 'Image'; // Используем теги изображения в качестве описания
       imageContainer.appendChild(imgElement);
     });
   } else {
-    // console.error('Элемент с id "imageContainer" не найден');
+    console.error('Элемент с id "imageContainer" не найден');
   }
 };
-
