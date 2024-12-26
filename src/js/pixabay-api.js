@@ -43,17 +43,19 @@ export const fetchImages = async (query, page = 1, perPage = 20) => {
 // Функция для показа/скрытия лоадера
 const showLoader = (isLoading) => {
   const loader = document.getElementById('loader');
-  if (loader) {
-    loader.style.display = isLoading ? 'block' : 'none';
-  } else {
-    console.error('Элемент с id "loader" не найден');
+  if (loader) { // Проверяем, существует ли элемент с id 'loader'
+    if (isLoading) {
+      loader.style.display = 'block';
+    } else {
+      loader.style.display = 'none';
+    }
   }
 };
+
 
 // Функция для скрытия кнопки "Load more"
 const hideLoadMoreButton = () => {
   const loadMoreButton = document.getElementById('loadMoreButton');
-<<<<<<< HEAD
   loadMoreButton.classList.add('is-hidden'); // Используем класс для скрытия
   console.log("Кнопка скрыта:", loadMoreButton);
   // loadMoreButton.style.display = 'none';
@@ -68,7 +70,7 @@ document.getElementById('loadMoreButton').addEventListener('click', async () => 
   const loader = document.querySelector('.loader');
   // loader.classList.remove('is-hidden'); // Показываем загрузчик
 
-  const query = 'nature';
+  const query = 'nature'; // Ваш запрос для поиска
   currentPage++; // Увеличиваем страницу после каждого клика
 
   const images = await fetchImages(query, currentPage, 15);
@@ -80,37 +82,6 @@ document.getElementById('loadMoreButton').addEventListener('click', async () => 
     // loader.classList.add('is-hidden'); // Прячем загрузчик после загрузки
 
 });
-=======
-  if (loadMoreButton) {
-    loadMoreButton.classList.add('is-hidden');
-    console.log('Кнопка скрыта:', loadMoreButton);
-  } else {
-    console.error('Элемент с id "loadMoreButton" не найден');
-  }
-};
-
-// Пример обработки события нажатия на кнопку "Load more"
-const loadMoreButton = document.getElementById('loadMoreButton');
-if (loadMoreButton) {
-  loadMoreButton.addEventListener('click', async () => {
-    loadMoreButton.classList.add('is-hidden');
-    showLoader(true);
-
-    const query = 'nature'; // Ваш запрос для поиска
-    currentPage++; // Увеличиваем страницу после каждого клика
-
-    const images = await fetchImages(query, currentPage, 15);
-    if (images.length > 0) {
-      // Добавляем новые изображения на страницу
-      displayImages(images);
-    }
-
-    showLoader(false);
-  });
-} else {
-  console.error('Кнопка "Load More" не найдена');
-}
->>>>>>> 529f8da41a38e40d733906b7cf8adfc80de768c5
 
 // Функция для отображения изображений
 const displayImages = (images) => {
@@ -119,10 +90,10 @@ const displayImages = (images) => {
     images.forEach((image) => {
       const imgElement = document.createElement('img');
       imgElement.src = image.webformatURL;
-      imgElement.alt = image.tags || 'Image'; // Используем теги изображения в качестве описания
       imageContainer.appendChild(imgElement);
     });
   } else {
-    console.error('Элемент с id "imageContainer" не найден');
+    // console.error('Элемент с id "imageContainer" не найден');
   }
 };
+
