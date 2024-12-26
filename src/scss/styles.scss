@@ -6,7 +6,9 @@
 // @use "bootstrap/scss/bootstrap" as *;
 // @import 'bootstrap/dist/css/bootstrap.min.css';
 // @import 'loader';
-
+// * {
+//   display: none !important;
+// }
 
 body {
   font-family: Arial, sans-serif;
@@ -73,10 +75,27 @@ header {
   text-align: center;
   margin-top: 20px;
   transition: background-color 0.3s ease;
+  position: relative;
+
+  &::after {
+    content: none; /* Отключаем появление лишних точек или элементов */
+  }
 
   &:hover {
     background-color: #0056b3;
   }
+}
+
+.load-more.is-hidden {
+  display: none !important; /* Применяем !important, чтобы точно скрыть */
+  visibility: hidden;
+  opacity: 0;
+}
+
+.loader.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  display: none !important; /* Применяем !important, чтобы точно скрыть */
 }
 
 .loader {
@@ -124,4 +143,9 @@ header {
     width: 100%;
     margin-top: 10px;
   }
+}
+
+.load-more::after,
+.loader::after {
+  content: none !important;
 }

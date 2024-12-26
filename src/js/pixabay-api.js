@@ -56,12 +56,21 @@ const showLoader = (isLoading) => {
 // Функция для скрытия кнопки "Load more"
 const hideLoadMoreButton = () => {
   const loadMoreButton = document.getElementById('loadMoreButton');
-  loadMoreButton.style.display = 'none';
+  loadMoreButton.classList.add('is-hidden'); // Используем класс для скрытия
+  console.log("Кнопка скрыта:", loadMoreButton);
+  // loadMoreButton.style.display = 'none';
 };
 
 // Пример обработки события нажатия на кнопку "Load more"
 document.getElementById('loadMoreButton').addEventListener('click', async () => {
-  const query = 'nature'; // Ваш запрос для поиска
+
+  const loadMoreButton = document.getElementById('loadMoreButton');
+  // loadMoreButton.classList.add('is-hidden'); // Скрываем кнопку
+
+  const loader = document.querySelector('.loader');
+  // loader.classList.remove('is-hidden'); // Показываем загрузчик
+
+  const query = 'nature';
   currentPage++; // Увеличиваем страницу после каждого клика
 
   const images = await fetchImages(query, currentPage, 15);
@@ -69,6 +78,9 @@ document.getElementById('loadMoreButton').addEventListener('click', async () => 
     // Добавляем новые изображения на страницу
     displayImages(images);
   }
+
+    // loader.classList.add('is-hidden'); // Прячем загрузчик после загрузки
+
 });
 
 // Функция для отображения изображений
