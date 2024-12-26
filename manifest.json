@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Ваше расширение",
+  "version": "1.0",
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "public/font/ProximaNova-Reg-webfont.woff2",
+        "public/font/ProximaNova-Bold-webfont.woff2"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "permissions": [
+    "activeTab",
+    "storage"
+  ]
+}
+
