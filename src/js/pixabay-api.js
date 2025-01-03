@@ -52,13 +52,11 @@ const showLoader = (isLoading) => {
   }
 };
 
-
 // Функция для скрытия кнопки "Load more"
 const hideLoadMoreButton = () => {
   const loadMoreButton = document.getElementById('loadMoreButton');
   loadMoreButton.classList.add('is-hidden'); // Используем класс для скрытия
   console.log("Кнопка скрыта:", loadMoreButton);
-  // loadMoreButton.style.display = 'none';
 };
 
 // Пример обработки события нажатия на кнопку "Load more"
@@ -96,4 +94,3 @@ const displayImages = (images) => {
     // console.error('Элемент с id "imageContainer" не найден');
   }
 };
-

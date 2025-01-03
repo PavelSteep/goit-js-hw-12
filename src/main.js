@@ -14,11 +14,17 @@ const loadMoreButton = document.getElementById('loadMoreButton');
 
 let currentPage = 1; // Номер текущей страницы
 let query = 'nature'; // Запрос по умолчанию
+let isLoading = false; // Переменная для блокировки повторных запросов
 
 // Функция для загрузки изображений
 async function loadImages() {
+  if (isLoading) return; // Если запрос уже выполняется, выходим
+
+  isLoading = true; // Блокируем повторные запросы
+
   if (!query) {
     iziToast.error({ message: 'Please enter a search term' });
+    isLoading = false;
     return;
   }
 
@@ -26,7 +32,7 @@ async function loadImages() {
 
   try {
     const images = await fetchImages(query, currentPage);
-    
+
     if (images.length === 0) {
       iziToast.info({ message: 'Sorry, there are no more images to load.' });
       hideLoadMoreButton(); // Скрываем кнопку, если больше нечего загружать
@@ -38,6 +44,7 @@ async function loadImages() {
     iziToast.error({ message: 'Something went wrong, please try again!' });
   } finally {
     hideLoader();
+    isLoading = false; // Разблокируем запросы
   }
 }
 
