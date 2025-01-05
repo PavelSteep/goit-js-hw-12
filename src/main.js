@@ -1,9 +1,11 @@
+import { createPopper } from '@popperjs/core';
 import { fetchImages } from './js/pixabay-api';
 import { renderGallery, showLoadMoreButton, hideLoadMoreButton } from './js/render-functions';
 import iziToast from 'izitoast';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import 'izitoast/dist/css/iziToast.min.css';
 
+// Настройки iziToast
 iziToast.settings({
   theme: 'dark',
   position: 'topRight',
@@ -16,6 +18,13 @@ let page = 1;
 
 const searchForm = document.querySelector('#search-form');
 const loadMoreButton = document.querySelector('.load-more');
+
+// Пример использования createPopper
+const button = document.querySelector('#some-button');
+const tooltip = document.querySelector('#tooltip');
+createPopper(button, tooltip, {
+  placement: 'top',
+});
 
 searchForm.addEventListener('submit', onSearchSubmit);
 loadMoreButton.addEventListener('click', onLoadMoreClick);
@@ -32,7 +41,6 @@ async function onSearchSubmit(e) {
   renderGallery(data.hits);
   if (data.hits.length > 0) showLoadMoreButton();
 }
-
 
 async function onLoadMoreClick() {
   page += 1;

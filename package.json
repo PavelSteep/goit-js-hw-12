@@ -6,17 +6,20 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build --base=/goit-js-hw-12/",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "clear": "rimraf dist"
   },
   "devDependencies": {
     "glob": "^11.0.0",
     "postcss": "^8.4.41",
     "postcss-sort-media-queries": "^5.2.0",
+    "rimraf": "^6.0.1",
     "vite": "^5.4.6"
   },
   "author": "Alexander Repeta <alexander.repeta@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "axios": "^1.7.9",
     "izitoast": "^1.4.0",
     "simplelightbox": "^2.14.3",
