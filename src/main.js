@@ -1,4 +1,3 @@
-import { createPopper } from '@popperjs/core';
 import { fetchImages } from './js/pixabay-api';
 import { renderGallery, showLoadMoreButton, hideLoadMoreButton } from './js/render-functions';
 import iziToast from 'izitoast';
@@ -18,16 +17,17 @@ let page = 1;
 
 const searchForm = document.querySelector('#search-form');
 const loadMoreButton = document.querySelector('.load-more');
-
-// Пример использования createPopper
-const button = document.querySelector('#some-button');
-const tooltip = document.querySelector('#tooltip');
-createPopper(button, tooltip, {
-  placement: 'top',
-});
+const gallery = document.querySelector('.gallery');
+const loader = document.createElement('span');
+loader.className = 'loader hidden';
+document.body.append(loader);
 
 searchForm.addEventListener('submit', onSearchSubmit);
 loadMoreButton.addEventListener('click', onLoadMoreClick);
+
+function toggleLoader(show) {
+  loader.classList.toggle('hidden', !show);
+}
 
 async function onSearchSubmit(e) {
   e.preventDefault();
@@ -36,19 +36,56 @@ async function onSearchSubmit(e) {
   if (!query) return;
 
   page = 1;
+  gallery.innerHTML = ''; // Удаляем предыдущие результаты
   hideLoadMoreButton();
-  const data = await fetchImages(query, page);
-  renderGallery(data.hits);
-  if (data.hits.length > 0) showLoadMoreButton();
+  toggleLoader(true);
+
+  try {
+    const data = await fetchImages(query, page);
+    toggleLoader(false);
+
+    if (data.hits.length === 0) {
+      iziToast.warning({
+        title: 'Уведомление',
+        message: 'Ничего не найдено. Попробуйте изменить запрос.',
+      });
+      return;
+    }
+
+    renderGallery(data.hits);
+    showLoadMoreButton();
+  } catch (error) {
+    toggleLoader(false);
+    iziToast.error({
+      title: 'Ошибка',
+      message: 'Не удалось загрузить данные. Повторите попытку позже.',
+    });
+  }
 }
 
 async function onLoadMoreClick() {
   page += 1;
-  const data = await fetchImages(query, page);
-  renderGallery(data.hits);
-  if (data.hits.length === 0 || page * 15 >= data.totalHits) {
-    hideLoadMoreButton();
-    alert("We're sorry, but you've reached the end of search results.");
+  toggleLoader(true);
+
+  try {
+    const data = await fetchImages(query, page);
+    toggleLoader(false);
+
+    if (data.hits.length === 0 || page * 15 >= data.totalHits) {
+      hideLoadMoreButton();
+      iziToast.info({
+        title: 'Конец',
+        message: 'Вы достигли конца результатов поиска.',
+      });
+    } else {
+      renderGallery(data.hits);
+    }
+  } catch (error) {
+    toggleLoader(false);
+    iziToast.error({
+      title: 'Ошибка',
+      message: 'Не удалось загрузить данные. Повторите попытку позже.',
+    });
   }
 }
 
