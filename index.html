@@ -4,9 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>goit-js-hw-12</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/simplelightbox@2.12.1/dist/simple-lightbox.min.css"
+    />
     <script type="module" crossorigin src="/goit-js-hw-12/index.js"></script>
-    <link rel="modulepreload" crossorigin href="/goit-js-hw-12/assets/vendor-N5iQpiFS.js">
-    <link rel="stylesheet" crossorigin href="/goit-js-hw-12/assets/index-BdwDNk00.css">
+    <link rel="modulepreload" crossorigin href="/goit-js-hw-12/assets/vendor-tnUJPedx.js">
+    <link rel="stylesheet" crossorigin href="/goit-js-hw-12/assets/vendor-CWKLx11g.css">
+    <link rel="stylesheet" crossorigin href="/goit-js-hw-12/assets/index-Cix6ZRTu.css">
   </head>
   <body>
     <main>
@@ -24,12 +29,18 @@
           <div class="gallery"></div>
           <button class="load-more hidden">Load more</button>
         </div>
+        <!-- Модальное окно для отображения увеличенной картинки -->
+        <div id="modal" class="modal hidden">
+          <div class="modal-content">
+            <span id="close-modal" class="close-btn">&times;</span>
+            <img id="modal-image" src="" alt="Expanded Image" />
+          </div>
+        </div>
       </header>
     </main>
 
-    <script src="/src/js/pixabay-api.js"></script>
-    <script src="/src/js/render-functions.js"></script>
-    <script src="/src/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simplelightbox@2.12.1/dist/simple-lightbox.min.js"></script>
 
   </body>
 </html>
