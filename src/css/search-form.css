@@ -1,0 +1,47 @@
+/* Стили для формы поиска */
+#search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+/* Стили для поля ввода */
+#search-form input {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid #4CAF50;
+  border-radius: 30px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  width: 250px;
+}
+
+/* Эффект при фокусе на поле ввода */
+#search-form input:focus {
+  border-color: #45a049;
+  box-shadow: 0 0 8px rgba(72, 193, 61, 0.5);
+}
+
+#search-form button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Эффект при наведении на кнопку */
+#search-form button:hover {
+  background-color: #45a049;
+  transform: translateY(-2px); /* Легкое поднятие кнопки */
+}
+
+/* Эффект при нажатии на кнопку */
+#search-form button:active {
+  transform: translateY(1px); /* Легкое опускание кнопки */
+}

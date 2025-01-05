@@ -1,5 +1,15 @@
 import { fetchImages } from './js/pixabay-api';
 import { renderGallery, showLoadMoreButton, hideLoadMoreButton } from './js/render-functions';
+import iziToast from 'izitoast';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+import 'izitoast/dist/css/iziToast.min.css';
+
+iziToast.settings({
+  theme: 'dark',
+  position: 'topRight',
+  transitionIn: 'flipInX',
+  transitionOut: 'flipOutX',
+});
 
 let query = '';
 let page = 1;
@@ -22,6 +32,7 @@ async function onSearchSubmit(e) {
   renderGallery(data.hits);
   if (data.hits.length > 0) showLoadMoreButton();
 }
+
 
 async function onLoadMoreClick() {
   page += 1;
