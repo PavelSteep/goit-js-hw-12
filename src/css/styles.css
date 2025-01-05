@@ -14,5 +14,41 @@
 @import url('./header.css');
 @import url('./vite-promo.css');
 @import url('./badges.css');
-@import url('./back-link.css');
-@import url('./footer.css');
+
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+#search-form {
+  margin: 20px 0;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.photo-card img {
+  width: 100%;
+  height: auto;
+}
+
+.load-more {
+  margin: 20px 0;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.load-more.hidden {
+  display: none;
+}
