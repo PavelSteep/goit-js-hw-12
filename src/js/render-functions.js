@@ -21,17 +21,16 @@ export function renderGallery(images) {
     .join('');
   gallery.insertAdjacentHTML('beforeend', markup);
 
-  // Инициализация SimpleLightbox
+
   const lightbox = new SimpleLightbox('.gallery a', {
     captions: true,
-    captionSelector: 'img', // использование изображения в качестве подписи
-    captionType: 'alt', // использование атрибута alt для подписи
+    captionSelector: 'img',
+    captionType: 'alt',
     captionDelay: 250,
-    overlay: true, // затемнение фона
-    stopPropagation: true // отключение пассивных слушателей
-  });  
+    overlay: true,
+    stopPropagation: true,
+  });
 }
-
 
 export function hideLoadMoreButton() {
   const loadMoreButton = document.querySelector('.load-more');

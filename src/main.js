@@ -43,8 +43,12 @@ async function onSearchSubmit(e) {
     renderGallery(data.hits);
     if (data.totalHits > page * 15) showLoadMoreButton(); // Показываем кнопку, если есть больше страниц
   } catch (error) {
-    console.error('Ошибка:', error);
-    document.body.removeChild(loader);
+    console.error('Ошибка:', error); // Логирование для разработчиков
+    iziToast.error({
+      title: 'Ошибка',
+      message: 'Не удалось выполнить поиск изображений. Попробуйте позже.',
+    }); // Уведомление для пользователей
+    document.body.removeChild(loader); // Убираем индикатор загрузки
   }
 }
 
@@ -61,7 +65,11 @@ async function onLoadMoreClick() {
       iziToast.info({ title: 'Конец результатов', message: 'Больше изображений нет' });
     }
   } catch (error) {
-    console.error('Ошибка:', error);
-    document.body.removeChild(loader);
+    console.error('Ошибка:', error); // Логирование для разработчиков
+    iziToast.error({
+      title: 'Ошибка',
+      message: 'Не удалось загрузить дополнительные изображения. Попробуйте позже.',
+    }); // Уведомление для пользователей
+    document.body.removeChild(loader); // Убираем индикатор загрузки
   }
 }

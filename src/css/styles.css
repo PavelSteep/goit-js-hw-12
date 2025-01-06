@@ -15,7 +15,8 @@
 @import url('./vite-promo.css');
 @import url('./badges.css');
 
-/* modals, gallery, search-form forms style */
+/* modals, gallery, search-form, loader forms style */
 @import url('./modal.css');
 @import url('./search-form.css');
 @import url('./gallery.css');
+@import url('./loader.css');
